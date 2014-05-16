@@ -1,0 +1,4 @@
+This is a php service to help viewing streaming videos.
+What you need is to setup a video directory where to put all your videos. If 
+ videos are stored in a different dir video-server will recognize them as a 
+ fiction. 
