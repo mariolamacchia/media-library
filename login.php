@@ -11,15 +11,51 @@ if (isset($_POST['username'])) {
 }
 ?>
 <!DOCTYPE html>
-<h2>Login</h2>
-<form action="#" method="POST">
-    Username<br>
-    <input name='username' type='text' /><br>
-    Password<br>
-    <input name='password' type='password' /><br>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" 
+    href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" 
+    href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Video Server <small>just a video server...</small></h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Login</h2>
+                </div>
+                <div class="panel-body">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                        <input class="form-control" name='username' type='text'
+                            placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                        <input class="form-control" name='password' 
+                            placeholder="Password" type='password'>
+                        </div>
+                        <input type='submit' value="Invia" class="btn btn-default"/>
+                    </form>
+                </div>
+            </div>
 <?php 
 if (isset($loginfailed))  
-    echo "<span style='color:red'>Login failed</span><br>"; 
+echo "<div class='alert alert-danger'>Login failed</div>"; 
 ?>
-    <input type='submit' value="Ok"/>
-</form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

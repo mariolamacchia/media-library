@@ -19,7 +19,6 @@ function create_m3u_from_file($file) {
         $content = "#EXTM3U\n\n";
         $content .= "#EXTINF:-1, $filename\n";
         $content .= "$actual_link".str_replace(' ','%20',"temp/$hash");
-        echo "<li><a href='$actual_link"."temp/$hash.m3u'>";
         #look for an image
         $image = '';
         $s = dirname($file).'/'.pathinfo($file)['filename'].'*';
@@ -37,9 +36,13 @@ function create_m3u_from_file($file) {
             $image = "temp/$hash.$imgext";
         }
         #output
-        echo "<img width='300' height='300' src='$image'/>";
-        echo "$filename</a><br></li>";
+        $ret = array(
+            'link' => $actual_link."temp/$hash.m3u",
+            'image' => $image,
+            'name' => $filename,
+        ); 
         file_put_contents('temp/'.$hash.'.m3u',$content);
+        return $ret;
 }
 
 function create_m3u_from_dir($dir) {
@@ -72,9 +75,14 @@ function create_m3u_from_dir($dir) {
             symlink($image, "temp/$hash.$imgext");
             $image = "temp/$hash.$imgext";
         }
-        echo "<li><a href='$actual_link"."temp/$hash.m3u'>";
-        echo "<img src='$image' />$dirname</a></li><br>";
+        #Output
+        $ret = array(
+            'link' => $actual_link."temp/$hash.m3u",
+            'image' => $image,
+            'name' => $dirname,
+        );
         file_put_contents('temp/'.$hash.'.m3u',$content);
+        return $ret;
 }
 
 function private_zone() {
