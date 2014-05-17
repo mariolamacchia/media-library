@@ -13,6 +13,9 @@ if (isset($_POST['username'])) {
 <!DOCTYPE html>
 <html>
 <head>
+<!-- JQuery -->
+<script src=" http://code.jquery.com/jquery-1.6.4.min.js" 
+    type="text/javascript"></script>
 <link rel="stylesheet" href="css/style.css" />
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" 
@@ -21,8 +24,7 @@ if (isset($_POST['username'])) {
 <link rel="stylesheet" 
     href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">
-</script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -46,7 +48,8 @@ if (isset($_POST['username'])) {
                         <input class="form-control" name='password' 
                             placeholder="Password" type='password'>
                         </div>
-                        <input type='submit' value="Invia" class="btn btn-default"/>
+                        <input type='submit' value="Invia" 
+                            class="btn btn-primary btn-block"/>
                     </form>
                 </div>
             </div>

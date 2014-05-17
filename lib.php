@@ -1,6 +1,10 @@
 <?php
 include "config.php";
-
+session_start();
+if (isset($_GET['download'])) {
+    $_SESSION['download'] = $_GET['download'];
+    header("location: index.php");
+} else if (!isset($_SESSION['download'])) $_SESSION['download'] = "m3u";
 
 function empty_temp_files($temp) {
     $files = glob($temp.'/*'); // get all file names
@@ -39,7 +43,8 @@ function create_m3u_from_file($file) {
         $ret = array(
             'link' => $actual_link."temp/$hash.m3u",
             'image' => $image,
-            'name' => $filename,
+            'name' => basename($filename, '.'.pathinfo($file)['extension']),
+            'stream' => $actual_link."temp/$hash",
         ); 
         file_put_contents('temp/'.$hash.'.m3u',$content);
         return $ret;
@@ -80,18 +85,17 @@ function create_m3u_from_dir($dir) {
             'link' => $actual_link."temp/$hash.m3u",
             'image' => $image,
             'name' => $dirname,
+            'stream' => $actual_link."temp/$hash.m3u",
         );
         file_put_contents('temp/'.$hash.'.m3u',$content);
         return $ret;
 }
 
 function private_zone() {
-    session_start();
     if (!isset($_SESSION['username']))
         header("location: login.php");
 }
 function public_zone() {
-    session_start();
     if (isset($_SESSION['username']))
         header("location: index.php");
 }
