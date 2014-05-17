@@ -30,7 +30,7 @@ private_zone();
               <?=$_SESSION['username']?>
               <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="login.php?logout=">Logout</a></li>
+                <li><a href="index.php?logout">Logout</a></li>
               </ul>
             </li>
         </div>
