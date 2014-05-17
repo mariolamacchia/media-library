@@ -9,8 +9,9 @@ function empty_temp_files($temp) {
     }
 }
 
-function create_m3u_from_file($file, $temp) {
-        $actual_link = "http://$GLOBALS[ROOT_URI]";
+function create_m3u_from_file($file) {
+        $actual_link = "http://$GLOBALS[root_uri]";
+        $temp = $GLOBALS['temp_dir'];
         $filename = basename($file);
         $hash = md5($filename);
         symlink($file,'temp/'.$hash);
@@ -24,7 +25,8 @@ function create_m3u_from_file($file, $temp) {
         $s = dirname($file).'/'.pathinfo($file)['filename'].'*';
         $images = glob($s) ;
         foreach($images as $imgfile) {
-            if (in_array(pathinfo($imgfile)['extension'], $GLOBALS['IMAGES_EXTENSION']))
+            if (in_array(pathinfo($imgfile)['extension'], 
+                $GLOBALS['images_extension']))
                 $image = $imgfile;
         }
         if ($image == '') $image = $GLOBALS['default_movie_img'];
@@ -35,12 +37,14 @@ function create_m3u_from_file($file, $temp) {
             $image = "temp/$hash.$imgext";
         }
         #output
-        echo "<img width='300' height='300' src='$image'/>$filename</a><br></li>";
-        File_put_contents('temp/'.$hash.'.m3u',$content);
+        echo "<img width='300' height='300' src='$image'/>";
+        echo "$filename</a><br></li>";
+        file_put_contents('temp/'.$hash.'.m3u',$content);
 }
 
-function create_m3u_from_dir($dir, $temp) {
-        $actual_link = "http://$GLOBALS[ROOT_URI]";
+function create_m3u_from_dir($dir) {
+        $actual_link = "http://$GLOBALS[root_uri]";
+        $temp = $GLOBALS['temp_dir'];
         $dirname = basename($dir);
         $hash = md5($dirname);
         symlink($dir,"temp/$hash");
@@ -49,7 +53,8 @@ function create_m3u_from_dir($dir, $temp) {
         foreach($files as $file) {
             $filename = basename($file);
             $content .= "#EXTINF:-1, $filename\n";
-            $content .= "$actual_link".str_replace(' ','%20',"temp/$hash/$filename\n");
+            $content .= "$actual_link".str_replace
+                (' ','%20',"temp/$hash/$filename\n");
         }
         #look for an image
         $images = glob("$dir*");
@@ -57,10 +62,16 @@ function create_m3u_from_dir($dir, $temp) {
         foreach($images as $imgfile) {
             if (!is_dir($imgfile)) 
                 if (in_array(pathinfo($imgfile)['extension']
-                    ,$GLOBALS['IMAGES_EXTENSION']))
+                    ,$GLOBALS['images_extension']))
                     $image = $imgfile;
         }
         if ($image == '') $image = $GLOBALS['default_folder_img'];
+        else {
+            #make symlink
+            $imgext = pathinfo($image)['extension'];
+            symlink($image, "temp/$hash.$imgext");
+            $image = "temp/$hash.$imgext";
+        }
         echo "<li><a href='$actual_link"."temp/$hash.m3u'>";
         echo "<img src='$image' />$dirname</a></li><br>";
         file_put_contents('temp/'.$hash.'.m3u',$content);
