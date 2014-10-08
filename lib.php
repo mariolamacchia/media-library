@@ -7,6 +7,7 @@ if (isset($_GET['download'])) {
 } else if (!isset($_SESSION['download'])) $_SESSION['download'] = "m3u";
 
 function empty_temp_files($temp) {
+    // Empty .tmp folder
     $files = glob($temp.'/*'); // get all file names
     foreach($files as $file){ // iterate files
         unlink($file); // delete file
