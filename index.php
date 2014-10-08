@@ -21,7 +21,7 @@ private_zone();
 <body class="main-body">
 <div class="container">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <h3 class="navbar-text">Video Server</h3>
+    <h3 class="navbar-text">Media Library</h3>
     <div class="collapse navbar-collapse">
         <div class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -53,7 +53,7 @@ else echo "m3u Download";
     </div>
 </nav>
     <div class="page-header">
-        <h1>Video Server <small>just a video server...</small></h1>
+        <h1>Media Library <small>just a media library...</small></h1>
     </div>
 <?php
 empty_temp_files($temp_dir);

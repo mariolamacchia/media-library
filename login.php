@@ -29,7 +29,7 @@ if (isset($_POST['username'])) {
 <body>
 <div class="container">
     <div class="page-header">
-        <h1>Video Server <small>just a video server...</small></h1>
+        <h1>Media Library <small>just a media library...</small></h1>
     </div>
     <div class="row">
         <div class="col-md-4"></div>
