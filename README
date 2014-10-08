@@ -1,9 +1,0 @@
-This is a php service to help viewing streaming videos. You will read all your
- movies in a sorted list and, once you've chosen one of those, you will just
- use the hyperlink to download a m3u file which points to the stream file.
-What you need is to setup a video directory where to put all your videos. If 
- videos are stored in a different dir video-server will recognize them as a 
- fiction. 
-Once you've set your movies directory, you will write its path under ROOT_PATH
- in index.php. Leave everything else as it is.
-Check root dir allows apache to access and read every file. 
