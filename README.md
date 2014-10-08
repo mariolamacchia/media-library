@@ -13,13 +13,16 @@ Setup
 -----
 
 Easy peasy! Just put all your media in a folder, put its path under ROOT_PATH,
-in index.php and you're done.
+in config.php and you're done.
 
 For now, Media Library will get only files in the ROOT_PATH folder. Each
 subfolder is seen as a TV serie and will be downloaded as a single playlist.
 
 You can also save images with same name of the file to have a cool preview of
 it.
+
+For login configurations, check config.php, until I will implement an automated
+setup.
 
 Future
 ------
@@ -30,5 +33,8 @@ I would like to add a lot of features, such as:
 - Building custom playlists
 - Browsing subfolders
 - Automatically generating preview images from videos
+- Storing informations in a db
+- Adding rating and comments
+- Admin configuration panel
 
 Unfortunately, I don't have enough time, so I would appreciate any contribute.
