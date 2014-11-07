@@ -173,20 +173,20 @@ case 1:
         <input type=hidden name=database value=".$args['database'].">
         <input type=text value='".$args['database']."'
         class=form-control disabled>
-            <h2>Database host</h2>
-            <input type=text placeholder='Host' class=form-control
-            name=dbhost value=localhost>
-            <h2>Database name</h2>
-            <input type=text placeholder='Database name' class=form-control
-            name=dbname>
-            <h2>Database credentials</h2>
-            <input type=text placeholder='Database username' class=form-control
-            name=dbuser>
-            <input type=password placeholder='Password' class=form-control
-            name=dbpassword>
-            $error
-            <button class='btn btn-default'>Next</button>
-            ";
+        <h2>Database host</h2>
+        <input type=text placeholder='Host' class=form-control
+        name=dbhost value=localhost>
+        <h2>Database name</h2>
+        <input type=text placeholder='Database name' class=form-control
+        name=dbname>
+        <h2>Database credentials</h2>
+        <input type=text placeholder='Database username' class=form-control
+        name=dbuser>
+        <input type=password placeholder='Password' class=form-control
+        name=dbpassword>
+        $error
+        <button class='btn btn-default'>Next</button>
+        ";
     break;
 case 2:
     echo "
