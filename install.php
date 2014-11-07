@@ -9,16 +9,10 @@ function getConnectionString($dbtype, $dbhost, $dbname) {
 }
 
 function testConnection($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
-    try {
-        $dbh = new PDO(
-            getConnectionString($dbtype, $dbhost, $dbname),
-            $dbuser, $dbpassword);
-        $dbh = null;
-        return true;
-    } catch (PDOException $e) {
-        echo "Error!: " . $e->getMessage() . "<br/>";
-        return false;
-    }
+    $dbh = new PDO(
+        getConnectionString($dbtype, $dbhost, $dbname),
+        $dbuser, $dbpassword);
+    $dbh = null;
 }
 
 function initDatabase($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
@@ -87,18 +81,18 @@ function getState($args) {
             }
         }
     } else if (isset($args['dbname'])) {
-        if (testConnection(
-            $args['database'],
-            $args['dbhost'],
-            $args['dbname'],
-            $args['dbuser'],
-            $args['dbpassword'])) {
-                $state = 2;
-            } else {
-                $state = 1;
-                $error = "Connection failed";
-                $db = $args['database'];
-            }
+        try {
+            testConnection(
+                $args['database'],
+                $args['dbhost'],
+                $args['dbname'],
+                $args['dbuser'],
+                $args['dbpassword']);
+            $state = 2;
+        } catch (Exception $e) {
+            $state = 1;
+            $error = $e->getMessage();
+        }
     } else if (isset($args['database'])) {
         $db = $args['database'];
         if ($db == 'MySQL') $state = 1;
