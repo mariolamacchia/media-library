@@ -22,6 +22,7 @@ function testConnection($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
 }
 
 function initDatabase($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
+    if ($dbtype == 'SqLite') fwrite(__DIR__ . '/db.sqlite3', 'w');
     $dbh = new PDO(
         getConnectionString($dbtype, $dbhost, $dbname),
         $dbuser, $dbpassword);
@@ -102,11 +103,7 @@ function getState($args) {
         $db = $args['database'];
         if ($db == 'MySQL') $state = 1;
         else if ($db == 'SqLite') {
-            if (testConnection($args['database'])) $state = 2;
-            else {
-                $state = 0;
-                $error = "An error occurred while connecting to sqlite db.";
-            }
+            $state = 2;
         } else {
             $state = 0;
             $error = 'Invalid database type!';
