@@ -14,10 +14,11 @@ class CreateUserTable extends Migration
 	{
     Schema::create('users', function($table)
     {
-      $table->string('username')->primary();
+      $table->increments('id');
+      $table->string('username');
       $table->string('folder')->default('');
       $table->boolean('admin')->default(false);
-      $table->char('password', 60);
+      $table->char('password', 64);
       $table->timestamps();
     });
 	}
