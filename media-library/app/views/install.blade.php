@@ -10,6 +10,8 @@
       <input class='form-control' name=password type=password>
       Confirm password
       <input class='form-control' name=passconf type=password>
+      Folder
+      <input class='form-control' name=folder value=media>
       <button class='btn btn-default'>Ok</button>
     </form>
   </div>

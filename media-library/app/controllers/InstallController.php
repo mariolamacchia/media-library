@@ -7,6 +7,7 @@ class InstallController extends BaseController
     $username = Input::get('username');
     $password = Input::get('password');
     $passconf = Input::get('passconf');
+    $folder = Input::get('folder');
 
     $result = $this->validate($username, $password, $passconf);
     echo var_dump($result);
@@ -53,13 +54,14 @@ class InstallController extends BaseController
     return User::where('admin', true)->first();
   }
 
-  private function saveUser($username, $password)
+  private function saveUser($username, $password, $folder)
   {
     try {
     $admin = new User;
     $admin->admin = true;
     $admin->username = $username;
     $admin->password = Hash::make($password); 
+    $admin->folder = $folder;
     $admin->save();
     } catch (Exception $e) {
       echo $e->getMessage();
