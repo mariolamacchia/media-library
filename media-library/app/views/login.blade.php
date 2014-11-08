@@ -1,15 +1,3 @@
-<?php
-include "lib.php";
-public_zone();
-if (isset($_POST['username'])) {
-    if ($_POST['username'] == $username and
-        md5($_POST['password']) == $password) {
-            $_SESSION['username'] = $_POST['username'];
-            header('location: index.php');
-        }
-    else $loginfailed='';
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,10 +41,9 @@ if (isset($_POST['username'])) {
                     </form>
                 </div>
             </div>
-<?php 
-if (isset($loginfailed))  
-echo "<div class='alert alert-danger'>Login failed</div>"; 
-?>
+        @if (isset($error))
+            <div class='alert alert-danger'>{{{ $error }}}</div>
+        @endif
         </div>
     </div>
 </div>
