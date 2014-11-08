@@ -51,28 +51,39 @@ class IndexController extends BaseController
 
   private function getFiles()
   {
+    try {
     $out = [];
     $video_extension = ['avi', 'mp4'];
     $user = Auth::user();
     $files = glob($user->folder);
     foreach ($files as $file) {
-      $film = '';
+      $pathinfo = pathinfo($file);
+      if (isset($pathinfo['extension'])) $ext = $pathinfo['extension'];
+      else $ext = '';
+      $name = basename($pathinfo['basename'], $ext);
+
+      if (!is_dir($file)) {
+      } else {
+      }
+
+      if (isset($pathinfo['extension'])) $ext = pathinfo($file)['extension'];
+      else $ext = '';
       // If file is video
       if (!is_dir($file) and in_array($ext, $video_extension)) {
-        $ext = pathinfo($file)['extension'];
         $out[] = array(
-          'name' => pathinfo($file, $ext)['basename'],
+          'name' => pathinfo($file)['basename'],
           'image' => '',
           'link' => '#'
         );
       } else if (is_dir($file)) {
         $out[] = array(
-          'name' => $film,
+          'name' => pathinfo($file)['basename'],
           'image' => '',
           'link' => '#'
         );
       }
     }
     return $out;
+    } catch (Exception $e) {echo $e->getMessage(); return null;}
   }
 }
