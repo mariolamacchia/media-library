@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTable extends Migration {
-
+class CreateUserTable extends Migration
+{
 	/**
 	 * Run the migrations.
 	 *
@@ -15,9 +15,10 @@ class CreateUserTable extends Migration {
     Schema::create('users', function($table)
     {
       $table->string('username')->primary();
-      $table->string('folder');
+      $table->string('folder')->default('');
       $table->boolean('admin')->default(false);
       $table->char('password', 60);
+      $table->timestamps();
     });
 	}
 
