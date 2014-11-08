@@ -1,8 +1,3 @@
-<?php
-include "lib.php";
-if (isset($_GET['logout'])) unset($_SESSION['username']);
-private_zone();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +22,7 @@ private_zone();
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="glyphicon glyphicon-user"></span>
-              <?=$_SESSION['username']?>
+              {{{ $user->username }}}
               <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="index.php?logout">Logout</a></li>
@@ -37,10 +32,7 @@ private_zone();
         <div class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<?php 
-if ($_SESSION['download'] == 'ext') echo "Video Download"; 
-else echo "m3u Download";
-?>
+              {{{ $downloadType }}}
               <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="index.php?download=m3u">m3u Download</a></li>
@@ -55,6 +47,17 @@ else echo "m3u Download";
     <div class="page-header">
         <h1>Media Library <small>just a media library...</small></h1>
     </div>
+    @foreach($files as $file)
+      <div class='col-md-3 col-sm-3'>
+        <div class='thumbnail'>
+          <a href='{{{ $file["link"] }}}'>
+            <img src='{{{ $file["image"] }}}' alt='{{{ $file["name"] }}}'>
+              <div class='caption'>{{{ $file['name'] }}}</div>
+          </a>
+        </div>
+      </div>
+    @endforeach
+</div>
 <?php
 empty_temp_files($temp_dir);
 $files = glob("$root_dir/*");
@@ -80,7 +83,6 @@ foreach($files as $file) {
     $i++;
     if ($i % 4 == 0) echo "</div>";
 }
-
 ?>
 </div>
 </body>
