@@ -25,7 +25,7 @@
               {{{ $user->username }}}
               <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="index.php?logout">Logout</a></li>
+                <li><a href="logout">Logout</a></li>
               </ul>
             </li>
         </div>
@@ -35,8 +35,8 @@
               {{{ $downloadType }}}
               <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="index.php?download=m3u">m3u Download</a></li>
-                <li><a href="index.php?download=ext">Video Download</a></li>
+                <li><a href="?download=m3u">m3u Download</a></li>
+                <li><a href="?download=ext">Video Download</a></li>
               </ul>
             </li>
         </div>
