@@ -23,7 +23,7 @@ function initDatabase($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
     $dbh->query("drop table if exists users");
     $dbh->query("CREATE TABLE Users (
         username VARCHAR(255) NOT NULL,
-        password CHAR(32) NOT NULL,
+        password_hash CHAR(32) NOT NULL,
         folder VARCHAR(255),
         admin TINYINT(1) NOT NULL DEFAULT 0);");
     return $dbh;
@@ -31,7 +31,9 @@ function initDatabase($dbtype, $dbhost, $dbname, $dbuser, $dbpassword) {
 
 function createAdmin($connection, $username, $password) {
     $connection->query(
-        "INSERT INTO Users VALUES ('$username', '$password', '', 1);");
+        "INSERT INTO Users
+        (username, password_hash, folder, admin) 
+        VALUES ('$username', '$password', '', 1);");
     $connection = null;
 }
 
