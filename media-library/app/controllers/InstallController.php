@@ -12,7 +12,11 @@ class InstallController extends BaseController
     $result = $this->validate($username, $password, $passconf);
     echo var_dump($result);
     if ($result['success']) {
-      $this->saveUser($username, $password);
+      try {
+        $this->saveUser($username, $password, $folder);
+      } catch (Exception $e) {
+        return $e->getMessage();
+      }
       return Redirect::to('/');
     } else {
       return Redirect::to('/')->with('error', $result['message']);
@@ -56,15 +60,11 @@ class InstallController extends BaseController
 
   private function saveUser($username, $password, $folder)
   {
-    try {
     $admin = new User;
     $admin->admin = true;
     $admin->username = $username;
     $admin->password = Hash::make($password); 
     $admin->folder = $folder;
     $admin->save();
-    } catch (Exception $e) {
-      echo $e->getMessage();
-    }
   }
 }
