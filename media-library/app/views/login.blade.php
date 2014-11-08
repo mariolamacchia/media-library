@@ -27,7 +27,7 @@
                     <h2 class="panel-title">Login</h2>
                 </div>
                 <div class="panel-body">
-                    <form action="#" method="POST">
+                    <form action="login" method="POST">
                         <div class="form-group">
                         <input class="form-control" name='username' type='text'
                             placeholder="Username">
@@ -41,7 +41,7 @@
                     </form>
                 </div>
             </div>
-        @if (isset($error))
+        @if ($error)
             <div class='alert alert-danger'>{{{ $error }}}</div>
         @endif
         </div>
