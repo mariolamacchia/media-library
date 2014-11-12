@@ -8,5 +8,5 @@ body {
 }
 
 .thumbnail {
-    word-break: break-word;
+    word-wrap: break-word;
 }
