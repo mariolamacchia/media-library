@@ -6,3 +6,7 @@ body {
 .main-body{
     padding-top: 30px;
 }
+
+.thumbnail {
+    word-break: break-word;
+}
